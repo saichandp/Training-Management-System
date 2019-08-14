@@ -1,0 +1,205 @@
+mysql> use tms;
+Database changed
+mysql> select *from employee_table;
++---------+----------+--------------+
+| emp_id  | emp_name | emp_password |
++---------+----------+--------------+
+| 8063570 | admin    | Training1@   |
++---------+----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> drop table employee_table;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select *from employee_table;
+ERROR 1146 (42S02): Table 'tms.employee_table' doesn't exist
+mysql> create table employee_table(emp_id vachar(10) not null,
+    -> emp_name varchar(10),
+    ->
+    -> .
+    -> l
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(10) not null,
+emp_name varchar(10),
+
+.
+l' at line 1
+mysql> create table employee_table(emp_id vachar(10) not null,
+    -> emp_name varchar(10),
+    -> l
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(10) not null,
+emp_name varchar(10),
+l' at line 1
+mysql> create table employee_table(emp_id vachar(10) not null,
+    -> emp_name varchar(10) not null,
+    -> emp_password varchar(15) not null,
+    -> primary key(emp_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(10) not null,
+emp_name varchar(10) not null,
+emp_password varchar(15) not' at line 1
+mysql> create table employee_table(emp_id varchar(10) not null,
+    -> emp_name varchar(10) not null,
+    -> emp_password varchar(15) not null,
+    -> primary key(emp_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into employee_table(emp_id,emp_name,emp_password)values('8063570','admin','Training1@');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> commit employee_table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'employee_table' at line 1
+mysql> SELECT USER();
++----------------+
+| USER()         |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> create table venue_table(city varchar2(30) not null,address varchar2(30) not null,office varchar2(30) primary key);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar2(30) not null,address varchar2(30) not null,office varchar2(30) primary ' at line 1
+mysql> create table venue_table(city varchar(30) not null,address varchar(30) not null,office varchar(30) primary key);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create  table courses(empId varchar(10) not null,empName varchar(30) not null,course varchar(30) not null,tierLevel varchar(15) not null,mobileNumber int not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table nomination(empid varchar(10) not null,ccode varchar(10) not null,cname varchar(20) not null,status varchar(15), primary key(empid,ccode));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from venue_table;
+Empty set (0.00 sec)
+
+mysql> select *from course;;
+ERROR 1146 (42S02): Table 'tms.course' doesn't exist
+ERROR:
+No query specified
+
+mysql> select *from course;
+ERROR 1146 (42S02): Table 'tms.course' doesn't exist
+mysql> create table course(ccode varchar(10) not null,cname varchar(30) not null,clevel varchar(20) not null,cvenue varchar(10) not null,cdate varchar(15) not null,primary key(ccode));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc nomination;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| empid  | varchar(10) | NO   | PRI | NULL    |       |
+| ccode  | varchar(10) | NO   | PRI | NULL    |       |
+| cname  | varchar(20) | NO   |     | NULL    |       |
+| status | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> select *from nomination;
+Empty set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from nomination;
+Empty set (0.00 sec)
+
+mysql> desc courses;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| empId        | varchar(10) | NO   |     | NULL    |       |
+| empName      | varchar(30) | NO   |     | NULL    |       |
+| course       | varchar(30) | NO   |     | NULL    |       |
+| tierLevel    | varchar(15) | NO   |     | NULL    |       |
+| mobileNumber | int(11)     | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select *from nomination;
+Empty set (0.00 sec)
+
+mysql> select *from nomination;
+Empty set (0.00 sec)
+
+mysql> desc nomination;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| empid  | varchar(10) | NO   | PRI | NULL    |       |
+| ccode  | varchar(10) | NO   | PRI | NULL    |       |
+| cname  | varchar(20) | NO   |     | NULL    |       |
+| status | varchar(15) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> select *from nomination;
++---------+-------+-------+---------+
+| empid   | ccode | cname | status  |
++---------+-------+-------+---------+
+| 8063570 | vi101 | java  | pending |
++---------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select *from nomination;
+Empty set (0.00 sec)
+
+mysql> select *from nomination;
++---------+-------+-------+---------+
+| empid   | ccode | cname | status  |
++---------+-------+-------+---------+
+| 8063570 | vi101 | java  | pending |
++---------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select *from nomination;
++---------+-------+-------+---------+
+| empid   | ccode | cname | status  |
++---------+-------+-------+---------+
+| 8063570 | vi101 | java  | pending |
++---------+-------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> create table manager_table(emp_id varchar(10) not null,
+    -> emp_name varchar(10) not null,
+    -> emp_password varchar(15) not null,primary key(emp_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into employee_table(emp_id,emp_name,emp_password)values('8063581','narendra','Manager1@');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into manager_table(emp_id,emp_name,emp_password)values('8063581','narendra','Manager1@');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from employee_table where emp_id='8063581';
+Query OK, 1 row affected (0.02 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create table training_table(emp_id varchar(10) not null,
+    -> emp_name varchar(10) not null,
+    -> emp_password varchar(15) not null,primary key(emp_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into training_table(emp_id,emp_name,emp_password)values('8063525','sai','Training1@');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from manager_table;
++---------+----------+--------------+
+| emp_id  | emp_name | emp_password |
++---------+----------+--------------+
+| 8063581 | narendra | Manager1@    |
++---------+----------+--------------+
+1 row in set (0.00 sec)
+
+mysql>
